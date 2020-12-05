@@ -15,12 +15,12 @@ public class TakeAwayBillManage implements TakeAwayBill{
         double tot = 0.0, min_price = Double.MAX_VALUE;
         int i = 0;
         for(MenuItem m : itemsOrdered){
-        	 if(m.getType() == type.Gelato) {
-                 i++;
-                 if(m.getPrice() < min_price) {
-                     min_price=m.getPrice();
-                 }
-             }
+            if(m.getType() == type.Gelato) {
+                i++;
+                if(m.getPrice() < min_price) {
+                    min_price=m.getPrice();
+                }
+            }
             tot+=m.getPrice();
         }
         
