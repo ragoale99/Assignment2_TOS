@@ -111,4 +111,25 @@ public class TakeAwayBillManageTest{
             exc.getMessage();
         }
     }
+    
+    @Test
+    public void Superati30OrdiniTest_True() throws TakeAwayBillException {
+    	expectedEx.expect(TakeAwayBillException.class);
+    	expectedEx.expectMessage("Limite massimo di 30 ordini superato");
+    	
+    	for(int i=0; i<31; i++) {
+            itemsOrdered.add(new MenuItem("Coppa Nafta",MenuItem.type.Budino,4.00));
+        }
+    	
+    	testPrice.getOrderPrice(itemsOrdered, u);
+    }
+    
+    @Test
+    public void Superati30OrdiniTest_False() throws TakeAwayBillException {
+    	for(int i=0; i<30; i++) {
+            itemsOrdered.add(new MenuItem("Coppa Nafta",MenuItem.type.Budino,4.00));
+        }
+    	
+    	testPrice.getOrderPrice(itemsOrdered, u);
+    }
 }

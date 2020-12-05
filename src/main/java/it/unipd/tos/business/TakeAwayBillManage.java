@@ -14,6 +14,9 @@ public class TakeAwayBillManage implements TakeAwayBill{
     public double getOrderPrice(List<MenuItem> itemsOrdered, User user) throws TakeAwayBillException {
         double tot = 0.0, min_price = Double.MAX_VALUE, totBevande = 0.0;
         int i = 0;
+        if(itemsOrdered.size() > 30){
+            throw new TakeAwayBillException("Limite massimo di 30 ordini superato");
+        }
         for(MenuItem m : itemsOrdered){
             if(m.getType() == type.Gelato) {
                 i++;
