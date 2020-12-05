@@ -132,4 +132,35 @@ public class TakeAwayBillManageTest{
     	
     	testPrice.getOrderPrice(itemsOrdered, u);
     }
+    
+    @Test
+    public void AggiuntaCommissione50CentTest_True() {
+    	
+    	 itemsOrdered.add(new MenuItem("Gelato 10 palline", MenuItem.type.Gelato, 1.00));
+         itemsOrdered.add(new MenuItem("Coca cola", MenuItem.type.Bevanda, 2.00));
+         itemsOrdered.add(new MenuItem("Budino normale", MenuItem.type.Budino, 3.00));
+         
+         try{
+             assertEquals(6.50, testPrice.getOrderPrice(itemsOrdered, u),0.0);
+         } 
+         catch (TakeAwayBillException exc){
+             exc.getMessage();
+         }
+    }
+    
+    @Test
+    public void AggiuntaCommissione50CentTest_False() {
+    	
+        itemsOrdered.add(new MenuItem("Gelato fragola", MenuItem.type.Gelato, 2.50));
+        itemsOrdered.add(new MenuItem("Coca cola", MenuItem.type.Bevanda, 2.00));
+        itemsOrdered.add(new MenuItem("Budino pinguino", MenuItem.type.Budino, 4.00));
+        itemsOrdered.add(new MenuItem("Fanta", MenuItem.type.Bevanda, 1.50));
+        
+        try{
+            assertEquals(10.00, testPrice.getOrderPrice(itemsOrdered, u),0.0);
+        } 
+        catch (TakeAwayBillException exc){
+            exc.getMessage();
+        }
+    }
 }

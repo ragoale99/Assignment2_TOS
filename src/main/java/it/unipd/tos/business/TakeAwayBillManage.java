@@ -38,6 +38,10 @@ public class TakeAwayBillManage implements TakeAwayBill{
             tot *= 0.9;
         }    
         
+        if(tot < 10) {
+            tot += 0.5;
+        }
+        
         return tot;
     }
 }
