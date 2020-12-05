@@ -45,4 +45,39 @@ public class TakeAwayBillManageTest{
             exc.getMessage();
         }
     } 
+	
+    @Test
+    public void TotaleMenoScontoDel50Test_True() {
+
+        itemsOrdered.add(new MenuItem("Gelato 2 palline", MenuItem.type.Gelato, 3.50));
+        itemsOrdered.add(new MenuItem("Coca cola", MenuItem.type.Bevanda, 2.00));
+        itemsOrdered.add(new MenuItem("Gelato 3 palline", MenuItem.type.Gelato, 4.50));
+        itemsOrdered.add(new MenuItem("Gelato cioccolato", MenuItem.type.Gelato, 2.50));
+        itemsOrdered.add(new MenuItem("Gelato fragola", MenuItem.type.Gelato, 2.50));
+        itemsOrdered.add(new MenuItem("Gelato baby", MenuItem.type.Gelato, 1.00));
+        
+        try{
+            assertEquals(15.50, testPrice.getOrderPrice(itemsOrdered, u),0.0);
+        } 
+        catch (TakeAwayBillException exc){
+            exc.getMessage();
+        }
+    } 
+    
+    @Test
+    public void TotaleMenoScontoDel50Test_False() {
+
+        itemsOrdered.add(new MenuItem("Gelato 2 palline", MenuItem.type.Gelato, 3.50));
+        itemsOrdered.add(new MenuItem("Coca cola", MenuItem.type.Bevanda, 2.00));
+        itemsOrdered.add(new MenuItem("Gelato cioccolato", MenuItem.type.Gelato, 2.50));
+        itemsOrdered.add(new MenuItem("Gelato fragola", MenuItem.type.Gelato, 2.50));
+        itemsOrdered.add(new MenuItem("Gelato baby", MenuItem.type.Gelato, 1.00));
+        
+        try{
+            assertEquals(11.50, testPrice.getOrderPrice(itemsOrdered, u),0.0);
+        } 
+        catch (TakeAwayBillException exc){
+            exc.getMessage();
+        }
+    } 
 }
