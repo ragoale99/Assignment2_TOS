@@ -12,7 +12,7 @@ import it.unipd.tos.business.exceptions.TakeAwayBillException;
 
 public class TakeAwayBillManage implements TakeAwayBill{
     public double getOrderPrice(List<MenuItem> itemsOrdered, User user) throws TakeAwayBillException {
-        double tot = 0.0, min_price = Double.MAX_VALUE;
+        double tot = 0.0, min_price = Double.MAX_VALUE, totBevande = 0.0;
         int i = 0;
         for(MenuItem m : itemsOrdered){
             if(m.getType() == type.Gelato) {
@@ -21,12 +21,19 @@ public class TakeAwayBillManage implements TakeAwayBill{
                     min_price=m.getPrice();
                 }
             }
+            if(m.getType()==type.Bevanda) {
+                totBevande += m.getPrice();
+            }
             tot+=m.getPrice();
         }
         
         if(i>=5) {
             tot -= min_price/2;
         }
+        
+        if(tot - totBevande > 50) {
+            tot *= 0.9;
+        }    
         
         return tot;
     }
