@@ -207,6 +207,28 @@ public class TakeAwayBillManageTest{
         	ordini.add(new Order(itemsOrdered,utenti.get(i),LocalTime.of(18, 30),8.50));
         }
         
-        List<Order> freeOrders = testPrice.getFreeOrders(ordini);
+        testPrice.getFreeOrders(ordini);
+    }
+    
+    @Test
+    public void StessoUtenteMinorenneConPiuOrdiniTest() throws TakeAwayBillException {
+    	expectedEx.expect(TakeAwayBillException.class);
+    	expectedEx.expectMessage("Non ci sono 10 ordini da regalare");
+    	
+    	List<Order> ordini = new ArrayList<Order>();
+    	List<User> utenti = new ArrayList<User>();
+    	
+    	itemsOrdered.add(new MenuItem("Gelato fragola", MenuItem.type.Gelato, 2.50));
+        itemsOrdered.add(new MenuItem("Coca cola", MenuItem.type.Bevanda, 2.00));
+        itemsOrdered.add(new MenuItem("Budino pinguino", MenuItem.type.Budino, 4.00));
+        
+        for(int i = 0; i < 10; i++) {
+        	if(i != 0 ? utenti.add(new User(i,"Nome","Cognome",true)) 
+        			: utenti.add(new User(i+1,"Nome","Cognome",true)))
+        	ordini.add(new Order(itemsOrdered,utenti.get(i),LocalTime.of(18, 30),8.50));
+        }
+        
+        testPrice.getFreeOrders(ordini);
+    
     }
 } 
