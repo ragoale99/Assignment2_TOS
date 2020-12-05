@@ -31,11 +31,9 @@ public class MenuItemTest{
 	
 	@Test
     public void getPriceTest(){
-		final double DELTA = 1e-15;
-		
-		assertEquals(2.50, m.getPrice(),DELTA);
-        assertEquals(2.00, m1.getPrice(),DELTA);
-        assertEquals(5.00, m2.getPrice(),DELTA);
+		assertEquals(2.50, m.getPrice(),0.0);
+        assertEquals(2.00, m1.getPrice(),0.0);
+        assertEquals(5.00, m2.getPrice(),0.0);
     }
 	
 }

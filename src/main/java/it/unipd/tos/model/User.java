@@ -32,4 +32,6 @@ public class User {
     public boolean getMinorenne(){
         return minorenne;
     }
+    
+    
 } 
